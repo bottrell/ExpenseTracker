@@ -52,11 +52,35 @@ class MyHomePage extends StatelessWidget {
               return Card(
                   child: Row(
                 children: [
-                  Container(child: Text(tx.cost.toString())),
+                  Container(
+                      padding: EdgeInsets.all(10),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        ),
+                      ),
+                      child: Text(
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.purple,
+                          ),
+                          tx.cost.toString())),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(tx.title!),
-                      Text(tx.date.toString()),
+                      Text(tx.title!,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15)),
+                      Text(tx.date.toString(),
+                        style: TextStyle(
+                          color: Colors.grey,
+                        
+                        ),
+                      ),
                     ],
                   )
                 ],
