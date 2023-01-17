@@ -16,14 +16,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Personal Expense Tracker'),
+      home: MyHomePage(title: 'Personal Expense Tracker'),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
   final String? title;
-  const MyHomePage({super.key, required String this.title});
+  MyHomePage({super.key, required String this.title});
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   static List<Transaction> transactions = [
     Transaction(id: "t1", title: "shoes", cost: 50, date: DateTime.now()),
@@ -40,43 +42,48 @@ class MyHomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Top level Chart to display transactions
           Container(
             width: double.infinity,
-            child: Card(
+            child: const Card(
               color: Colors.blue,
-              child: Text('Chart!'),
               elevation: 5,
+              child: Text('Chart!'),
             ),
           ),
+          // Transaction Input card
           Card(
               child: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 TextField(
                   decoration: InputDecoration(labelText: "Title"),
+                  controller: titleController,
                 ),
                 TextField(
                   decoration: InputDecoration(labelText: "Amount"),
+                  controller: amountController,
                 ),
                 TextButton(
-                    child: Text(
+                    child: const Text(
                         style: TextStyle(color: Colors.purple),
                         "Add Transaction"),
-                    onPressed: () => {}),
+                    onPressed: () => print(titleController.text)),
               ],
             ),
           )),
+          // Transactions List
           Column(
             children: transactions.map((tx) {
               return Card(
                   child: Row(
                 children: [
                   Container(
-                      padding: EdgeInsets.all(10),
-                      margin:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 15),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Colors.purple,
@@ -84,7 +91,7 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             color: Colors.purple,
@@ -95,11 +102,11 @@ class MyHomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(tx.title!,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 15)),
                       Text(
                         DateFormat.yMMMMd().format(tx.date!),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                         ),
                       ),
