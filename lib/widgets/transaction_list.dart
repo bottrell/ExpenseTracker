@@ -18,6 +18,7 @@ class TransactionList extends StatelessWidget {
           return Card(
               child: Row(
             children: [
+              // Container for the price box
               Container(
                   padding: const EdgeInsets.all(10),
                   margin:
@@ -34,7 +35,8 @@ class TransactionList extends StatelessWidget {
                         fontSize: 20,
                         color: Colors.purple,
                       ),
-                      "\$${transactions[index].cost.toString()}")),
+                      "\$${transactions[index].cost!.toStringAsFixed(2)}")),
+              // Column for title and DateTime
               Column(
                 //
                 crossAxisAlignment: CrossAxisAlignment.start,
