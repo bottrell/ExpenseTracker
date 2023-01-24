@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Newtransaction extends StatelessWidget {
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController amountController = TextEditingController();
+class Newtransaction extends StatefulWidget {
   final Function(String, double) callback;
 
   Newtransaction({required this.callback, super.key});
+
+  @override
+  State<Newtransaction> createState() => _NewtransactionState();
+}
+
+class _NewtransactionState extends State<Newtransaction> {
+  final TextEditingController titleController = TextEditingController();
+
+  final TextEditingController amountController = TextEditingController();
 
   void submitData() {
     final enteredTitle = titleController.text;
@@ -21,7 +28,8 @@ class Newtransaction extends StatelessWidget {
       return;
     }
 
-    callback(enteredTitle, enteredAmount);
+    widget.callback(enteredTitle, enteredAmount);
+    Navigator.of(context).pop();
   }
 
   @override
